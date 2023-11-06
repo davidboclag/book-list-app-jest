@@ -1,11 +1,12 @@
 import { CartComponent } from "./cart.component"
 import { ComponentFixture, TestBed, inject } from "@angular/core/testing";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from "@angular/core";
+import { CUSTOM_ELEMENTS_SCHEMA, DebugElement, NO_ERRORS_SCHEMA } from "@angular/core";
 import { BookService } from "../../services/book.service";
 import { Book } from "../../models/book.model";
 import { MatDialog } from "@angular/material/dialog";
 import { of } from "rxjs";
+import { By } from "@angular/platform-browser";
 
 const listBook: Book[] = [
     {
@@ -171,5 +172,21 @@ describe('Cart component', () => {
         expect(spy1).toHaveBeenCalledTimes(1);
     });
 
-
+    it('The title "The cart is empty" is not displayed when there is a list', () => {
+        component.listCartBook = listBook;
+        fixture.detectChanges();
+        const debugElement: DebugElement = fixture.debugElement.query(By.css('#titleCartEmpty'));
+        expect(debugElement).toBeFalsy();
+    });
+    
+    it('The title "The cart is empty" is displayed correctly when list is empty', () => {
+        component.listCartBook = [];
+        fixture.detectChanges();
+        const debugElement: DebugElement = fixture.debugElement.query(By.css('#titleCartEmpty'));
+        expect(debugElement).toBeTruthy();
+        if (debugElement) {
+            const element: HTMLElement = debugElement.nativeElement;
+            expect(element.innerHTML).toContain('The cart is empty');
+        }
+    });
 })
