@@ -1,8 +1,7 @@
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormComponent } from './form/form.component';
 import { NgModule } from '@angular/core';
-
 import { CommonModule } from '@angular/common';
-
 import { PagesRoutingModule } from './pages-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { PagesComponent } from './pages.component';
@@ -22,13 +21,16 @@ import { ConfirmationDialogModule } from '../dialogs/confirmation-dialog/confirm
     NavModule,
     PagesRoutingModule,
     MatDialogModule,
-    ConfirmationDialogModule
+    ConfirmationDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     PagesComponent,
     HomeComponent,
     CartComponent,
     ReduceTextPipe,
+    FormComponent
   ],
   exports: [
     PagesComponent,

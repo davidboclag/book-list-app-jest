@@ -1,3 +1,4 @@
+import { FormComponent } from './form/form.component';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { HomeComponent } from './home/home.component';
@@ -12,6 +13,10 @@ export const routes: Routes = [
   {
     path: 'cart',
     component: CartComponent
+  },
+  {
+    path: 'form',
+    component: FormComponent
   },
   {
     path: '',
